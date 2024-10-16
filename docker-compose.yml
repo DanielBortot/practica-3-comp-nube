@@ -1,4 +1,17 @@
 services:
+
+  practica-app:
+    container_name: app
+    build: .
+    command: ["node", "dist/main"]
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=${PORT}
+      - DB_HOST=${DB_HOST}
+    networks:
+      - practica-network
+
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -6,10 +19,10 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-      - 27017:27017
     volumes:
-      - ./database/mongodata:/data/db
+      - mongodbVol:/data/db
+    networks:
+      - practica-network
     
   mongo-express:
     image: mongo-express:latest
@@ -21,3 +34,11 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
       - ME_CONFIG_MONGODB_URL=${ME_CONFIG_MONGODB_URL}
       - ME_CONFIG_BASICAUTH=false
+    networks:
+      - practica-network
+
+volumes:
+  mongodbVol:
+
+networks:
+  practica-network:

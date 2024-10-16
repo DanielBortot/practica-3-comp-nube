@@ -20,7 +20,7 @@ export class DirectoriesController {
 
   @Get()
   getDirectories() {
-    return this.getDirectoriesService
+    return this.getDirectoriesService.execute();
   }
 
   @Post()
