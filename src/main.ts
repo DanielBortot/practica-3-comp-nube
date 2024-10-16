@@ -13,6 +13,6 @@ async function bootstrap() {
   }))
 
   await app.listen(envs.port);
-  logger.log(`App running on the port: ${envs.port}`)
+  logger.log(`App running on the port: ${envs.port}`, 'Main')
 }
 bootstrap();
