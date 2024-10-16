@@ -2,6 +2,8 @@ services:
 
   practica-app:
     container_name: app
+    depends_on:
+      - mongodb
     build: .
     command: ["node", "dist/main"]
     ports:
