@@ -2,6 +2,8 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 export class Directory {
+    @Prop({unique: true})
+    id: number;
 
     @Prop({required: true, type: String})
     name: string;
