@@ -1,10 +1,11 @@
-import { Controller, Delete, Get, Inject, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Patch, Post, Put } from '@nestjs/common';
 import { GetDirectoriesService } from './services/get-directories.service';
 import { CreateDirectoryService } from './services/create-directories.service';
 import { GetOneDirectoryService } from './services/get-one-directory.service';
 import { UpdateDirectoryService } from './services/update-directory.service';
 import { PartiallyUpdateDirectoryService } from './services/partially-update-directory.service';
 import { DeleteDirectoryService } from './services/delete-directory.service';
+import { CreateDirectoryDto } from './dtos/create-directory.dto';
 
 @Controller('directories')
 export class DirectoriesController {
@@ -23,8 +24,8 @@ export class DirectoriesController {
   }
 
   @Post()
-  createDirectory() {
-    return this.createDirectoriesService
+  createDirectory(@Body() createDirectory: CreateDirectoryDto) {
+    return this.createDirectoriesService.execute(createDirectory);
   }
 
   @Get()
