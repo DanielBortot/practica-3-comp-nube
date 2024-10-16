@@ -1,8 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import * as AutoIncrementFactory from 'mongoose-sequence';
+import * as mongoose from 'mongoose';
 
 @Schema()
 export class Directory {
-    @Prop({auto: "number"})
+    @Prop()
     id: number;
 
     @Prop({required: true, type: String})
@@ -12,4 +14,7 @@ export class Directory {
     emails: string[]
 }
 
-export const DirectorySchema = SchemaFactory.createForClass(Directory);
+const DirectorySchema = SchemaFactory.createForClass(Directory);
+DirectorySchema.plugin(AutoIncrementFactory(mongoose), { inc_field: 'id' })
+
+export {DirectorySchema}
