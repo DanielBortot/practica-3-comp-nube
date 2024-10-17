@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Directory } from "../entities/directory.entity";
 import { Model } from "mongoose";
 import { GetManyDirectoryDto } from "../dtos/get-many-directory-dto";
+import { envs } from "src/config/envs";
 
 @Injectable()
 export class GetDirectoriesService {
@@ -18,10 +19,13 @@ export class GetDirectoriesService {
         const directoriesFormat = result.map(direc => {
             return {id: direc.id, name: direc.name, emails: direc.emails}
         })
+
+        let newPage: number = page+perPage
+
         return {
             count: directoriesFormat.length,
-            next: '?',
-            previous: '?',
+            next: 'http://localhost:'+envs.port+'/directories?page='+newPage+'&perPage='+perPage,
+            previous: 'http://localhost:'+envs.port+'/directories?page='+page+'&perPage='+perPage,
             results: directoriesFormat
         }
     }
