@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { GetDirectoriesService } from './services/get-directories.service';
 import { CreateDirectoryService } from './services/create-directories.service';
 import { GetOneDirectoryService } from './services/get-one-directory.service';
@@ -6,6 +6,7 @@ import { UpdateDirectoryService } from './services/update-directory.service';
 import { PartiallyUpdateDirectoryService } from './services/partially-update-directory.service';
 import { DeleteDirectoryService } from './services/delete-directory.service';
 import { CreateDirectoryDto } from './dtos/create-directory.dto';
+import { PaginationQuery } from './dtos/pagination-query.dto';
 
 @Controller('directories')
 export class DirectoriesController {
@@ -19,18 +20,23 @@ export class DirectoriesController {
   ) {}
 
   @Get()
-  getDirectories() {
-    return this.getDirectoriesService
+  getDirectories( @Query() pagination: PaginationQuery  ) {
+    return this.getDirectoriesService.execute( pagination )
   }
 
+  @Get('/:id')
+  getOneDirectory( @Param('id') directoryId: string ) {
+    return this.getOneDirectoryService.execute( { id: directoryId } )
+  }
+
+  @Delete('/:id')
+  deleteDirectory( @Param('id') directoryId: string ) {
+    return this.deleteDirectoryService.execute( { id: directoryId } )
+  }
+  
   @Post()
   createDirectory(@Body() createDirectory: CreateDirectoryDto) {
     return this.createDirectoriesService.execute(createDirectory);
-  }
-
-  @Get()
-  getOneDirectory() {
-    return this.getOneDirectoryService
   }
 
   @Put()
@@ -43,8 +49,4 @@ export class DirectoriesController {
     return this.partiallyUpdateDirectoryService
   }
 
-  @Delete()
-  deleteDirectory() {
-    return this.deleteDirectoryService
-  }
 }
