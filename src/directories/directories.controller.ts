@@ -21,7 +21,11 @@ export class DirectoriesController {
 
   @Get()
   getDirectories( @Query() pagination: PaginationQuery  ) {
-    return this.getDirectoriesService.execute( pagination )
+    let page:number = 0
+    let perPage:number = 10
+    if (pagination.page) page = parseInt(pagination.page)
+    if (pagination.perPage) perPage = parseInt(pagination.perPage)
+    return this.getDirectoriesService.execute( { page, perPage } )
   }
 
   @Get('/:id')
