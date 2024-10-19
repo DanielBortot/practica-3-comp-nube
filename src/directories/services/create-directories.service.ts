@@ -10,7 +10,12 @@ export class CreateDirectoryService {
     constructor(@InjectModel(Directory.name) private directoryModel: Model<Directory>) {}
 
     async execute(directory: CreateDirectoryDto) {
-        const newDirectory = new this.directoryModel(directory);
-        return await newDirectory.save();
+        const directoryFound = await this.directoryModel.findOne({name: directory.name})
+        if (!directoryFound) {
+            const newDirectory = new this.directoryModel(directory);
+            const directorySaved = await newDirectory.save();
+            return {name: directorySaved.name, emails: directorySaved.emails}
+        }
+        return {name: directoryFound.name, emails: directoryFound.emails}
     }
 }
