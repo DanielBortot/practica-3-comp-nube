@@ -7,6 +7,8 @@ import { PartiallyUpdateDirectoryService } from './services/partially-update-dir
 import { DeleteDirectoryService } from './services/delete-directory.service';
 import { CreateDirectoryDto } from './dtos/create-directory.dto';
 import { PaginationQuery } from './dtos/pagination-query.dto';
+import { PartialUpdateDto } from './dtos/partial-update-directory.dto';
+import { UpdateDto } from './dtos/update-directory.dto';
 
 @Controller('directories')
 export class DirectoriesController {
@@ -44,13 +46,19 @@ export class DirectoriesController {
   }
 
   @Put()
-  updateDirectory() {
-    return this.updateDirectoryService
+  async updateDirectory(
+    @Query() query:{id:string},
+    @Body() data: UpdateDto
+  ) {
+    return await this.updateDirectoryService.execute({id:+query.id,...data})
   }
 
   @Patch()
-  partiallyUpdateDirectory() {
-    return this.partiallyUpdateDirectoryService
+  async partiallyUpdateDirectory(
+    @Query() query:{id:string},
+    @Body() data: PartialUpdateDto
+  ) {
+    return await this.partiallyUpdateDirectoryService.execute({id:+query.id,...data})
   }
 
 }
