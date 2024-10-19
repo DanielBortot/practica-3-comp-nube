@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
-export class Directory {
+export class Directory implements IDirectory {
     @Prop({unique: true})
     id: number;
 
