@@ -5,7 +5,6 @@ services:
     depends_on:
       - mongodb
     build: .
-    command: ["node", "dist/main"]
     ports:
       - ${PORT}:${PORT}
     environment:
