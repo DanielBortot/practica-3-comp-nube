@@ -24,7 +24,18 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Small Bakcend service using nest and docker.
+
+## Developers
+<table align="center">
+    <tbody>
+        <tr>
+            <td align="center"><a href="https://github.com/Fussita" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/110612202?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Fussita</b></sub></a><br><a href="" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+            <td align="center"><a href="https://github.com/C102002" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/116277334?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Alfredo Fung</b></sub></a><br><a href="" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+            <td align="center"><a href="https://github.com/DanielBortot" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/103535845?v=4" width="150px;" alt="" style="max-width:100%;"><br><sub><b>Daniel Borot</b></sub></a><br><a href="" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Installation
 
@@ -43,6 +54,9 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
+
+# deploy local version
+$ docker compose up -d
 ```
 
 ## Test
@@ -71,3 +85,17 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## Requirements
+<p align="center">
+<table align="center">
+    <tbody>
+        <tr>
+            <td align="center"> <a href="https://docs.nestjs.com" rel="nofollow"> <img src="./public/images/dependencies/nest-logo.svg" width="150px;" alt="" style="max-width:100%;"><br><sub><b>NestJS</b></sub></a><br><a href="https://docs.nestjs.com" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+            <td align="center"> <a href="https://nodejs.org/docs/latest/api/" rel="nofollow"> <img src="./public/images/dependencies/nodejs-png-nodejs-icon-png-50-px-1600.png" width="150px;" alt="" style="max-width:100%;"><br><sub><b>NodeJS</b></sub></a><br><a href="https://docs.nestjs.com" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+            <td align="center"> <a href="https://docs.docker.com" rel="nofollow"> <img src="./public/images/dependencies/Docker-Symbol.png" width="275px;" alt="https://docs.docker.com" style="max-width:100%;"><br><sub><b>Docker</b></sub></a><br><a href="https://docs.docker.com" title="Commits"><g-emoji class="g-emoji" alias="book" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png">📖</g-emoji></a></td>
+        </tr>
+    </tbody>
+</table>
+</p>
