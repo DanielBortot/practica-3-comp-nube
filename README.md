@@ -45,6 +45,24 @@ $ pnpm install
 
 ## Running the app
 
+### 1. Add Evaroment variables to the repository
+
+First you need to add the .env into the root of the prject
+
+```bash
+#Example
+PORT=3000
+DB_HOST=mongodb://root:12345@mongodb:27017/
+MONGO_INITDB_DATABASE=practica-3
+MONGO_INITDB_ROOT_USERNAME=root
+MONGO_INITDB_ROOT_PASSWORD=12345
+ME_CONFIG_MONGODB_ADMINUSERNAME=root
+ME_CONFIG_MONGODB_ADMINPASSWORD=12345
+ME_CONFIG_MONGODB_URL=mongodb://root:12345@mongodb:27017/
+```
+
+## 2. Run the application
+
 ```bash
 # development
 $ pnpm run start
@@ -70,6 +88,61 @@ $ pnpm run test:e2e
 
 # test coverage
 $ pnpm run test:cov
+```
+
+### 3. See runing the application
+
+To see the application database you must enter to one url which is deployed mongo express. In our case is:
+
+```bash
+# mongo express
+http://localhost:8081
+
+# the app (backend)
+http://localhost:3000
+
+```
+To see the changes you must send a pettition to the following endpoints
+
+```bash 
+GET /status/ -> Responde simplemente pong.
+GET /directories/ -> Listado de objetos.
+POST /directories/ -> Creación de objeto.
+GET /directories/{id} -> Obtener un objeto.
+PUT /directories/{id} -> Actualizar un objeto.
+PATCH /directories/{id} -> Actualizar parcialmente un objeto.
+DELETE /directories/{id} -> Eliminar un objeto.
+```
+
+```bash
+{
+   "name": "Rómulo Rodríguez",
+   "emails": [
+           "rjrodrig@ucab.edu.ve",
+           "rjrodriguezr.12@est.ucab.edu.ve"
+   ]
+}
+```
+
+```bash
+
+{
+   "count": <Total de objetos>,
+   "next": "link a siguiente página",
+   "previous": "link a página previa",
+   "results": [
+           {
+                   "id": 1,
+                   "name": "Rómulo Rodríguez",
+                   "emails": [
+                           "rjrodrig@ucab.edu.ve",
+                           "rjrodriguezr.12@est.ucab.edu.ve"
+                   ]
+           },
+   ...
+
+    ]
+}
 ```
 
 ## Support
