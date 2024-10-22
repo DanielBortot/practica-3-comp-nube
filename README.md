@@ -75,6 +75,9 @@ $ pnpm run start:prod
 
 # deploy local version
 $ docker compose up -d
+
+# deploy DockerHub version
+$ docker compose -f docker-compose-dockerhub.yml up -d
 ```
 
 ## Test
