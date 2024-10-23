@@ -9,12 +9,12 @@ services:
       - ${PORT}:${PORT}
     environment:
       - PORT=${PORT}
-      - DB_HOST=${DB_HOST}
+      - DB_HOST=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:27017/
     networks:
       - practica-network
 
   mongodb:
-    image: mongo:latest
+    image: mongo:4.4-focal
     container_name: mongodb
     environment:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
@@ -22,19 +22,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongodbVol:/data/db
-    networks:
-      - practica-network
-    
-  mongo-express:
-    image: mongo-express:latest
-    container_name: mongo-express-cn
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
-      - ME_CONFIG_MONGODB_URL=${ME_CONFIG_MONGODB_URL}
-      - ME_CONFIG_BASICAUTH=false
     networks:
       - practica-network
 
