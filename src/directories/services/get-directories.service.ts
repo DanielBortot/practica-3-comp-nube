@@ -18,12 +18,14 @@ export class GetDirectoriesService {
         let oldPage: number = (page-1)
         let next = 'http://localhost:'+envs.port+'/directories?page='+newPage+'&perPage='+perPage
         let previous = 'http://localhost:'+envs.port+'/directories?page='+oldPage+'&perPage='+perPage
-        if (page == 0) previous = 'your on page 0'
+        if (page == 0) previous = 'On page 0'
         if (page > 0) skip = (page-1)*perPage
         
         // page=1, perpage=10, total=100 -> limit=perpage, skip=(page-1)*perPage
         const result = await this.directoryModel.find().skip(skip).limit(perPage)
         const directoriesFormat = result.map(direc => { return {id: direc.id, name: direc.name, emails: direc.emails} })
+
+        if ( result.length < 10 ) next = 'On last page'
 
         return {
             count: directoriesFormat.length,
