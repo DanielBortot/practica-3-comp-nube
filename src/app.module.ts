@@ -15,7 +15,7 @@ import { Connection } from 'mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`mongodb://${envs.mongo_user}:${envs.mongo_pass}@${envs.db_host}:27017/`),
+    MongooseModule.forRoot(envs.db_host),
 
     MongooseModule.forFeatureAsync([
       {
