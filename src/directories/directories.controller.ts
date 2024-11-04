@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Patch, Post, Put, Query } from '@nestjs/common';
 import { GetDirectoriesService } from './services/get-directories.service';
 import { CreateDirectoryService } from './services/create-directories.service';
 import { GetOneDirectoryService } from './services/get-one-directory.service';
@@ -36,7 +36,7 @@ export class DirectoriesController {
   }
 
   @Delete('/:id')
-  deleteDirectory( @Param('id') directoryId: string ) {
+  deleteDirectory( @Param('id', ParseIntPipe) directoryId: number ) {
     return this.deleteDirectoryService.execute( { id: directoryId } )
   }
   
@@ -45,20 +45,20 @@ export class DirectoriesController {
     return this.createDirectoriesService.execute(createDirectory);
   }
 
-  @Put()
+  @Put('/:id')
   async updateDirectory(
-    @Query() query:{id:string},
+    @Param('id', ParseIntPipe) id: number,
     @Body() data: UpdateDto
   ) {
-    return await this.updateDirectoryService.execute({id:+query.id,...data})
+    return await this.updateDirectoryService.execute({id,...data})
   }
 
-  @Patch()
+  @Patch('/:id')
   async partiallyUpdateDirectory(
-    @Query() query:{id:string},
+    @Param('id', ParseIntPipe) id: number,
     @Body() data: PartialUpdateDto
   ) {
-    return await this.partiallyUpdateDirectoryService.execute({id:+query.id,...data})
+    return await this.partiallyUpdateDirectoryService.execute({id,...data})
   }
 
 }

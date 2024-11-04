@@ -5,6 +5,6 @@ export class StatusController {
 
     @Get()
     getStatus() {
-        return 'pong'
+        return {status: 'pong'}
     }
 }

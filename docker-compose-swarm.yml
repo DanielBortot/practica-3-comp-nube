@@ -4,13 +4,12 @@ services:
     container_name: app
     depends_on:
       - mongodb
-    image: darkchanga/practica-app:1.1
+    image: darkchanga/practica-app:1.2
     restart: always
     ports:
       - ${PORT}:${PORT}
-    environment:
-      - PORT=${PORT}
-      - DB_HOST=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:27017/
+    env_file:
+      - .env
     networks:
       - practica-network
 
@@ -19,9 +18,9 @@ services:
     restart: always
     container_name: mongodb
     environment:
-      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - mongodbVol:/data/db
     networks:

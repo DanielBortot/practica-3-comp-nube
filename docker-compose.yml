@@ -7,9 +7,8 @@ services:
     build: .
     ports:
       - ${PORT}:${PORT}
-    environment:
-      - PORT=${PORT}
-      - DB_HOST=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:27017/
+    env_file:
+      - .env
     networks:
       - practica-network
 
@@ -17,9 +16,9 @@ services:
     image: mongo:4.4-focal
     container_name: mongodb
     environment:
-      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - mongodbVol:/data/db
     networks:
