@@ -7,9 +7,13 @@ services:
     image: darkchanga/practica-app:1.2
     restart: always
     ports:
-      - ${PORT}:${PORT}
-    env_file:
-      - .env
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - DB_HOST=mongodb
+      - DB_NAME=practica-3
+      - DB_USER=root
+      - DB_PASSWORD=12345
     networks:
       - practica-network
 
@@ -18,9 +22,9 @@ services:
     restart: always
     container_name: mongodb
     environment:
-      - MONGO_INITDB_DATABASE=${DB_NAME}
-      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      - MONGO_INITDB_DATABASE=practica-3
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345
     volumes:
       - mongodbVol:/data/db
     networks:
@@ -31,7 +35,7 @@ volumes:
     driver: local
     driver_opts:
       type: "nfs"
-      o: "addr=nfssrv01,rw"
+      o: "addr=nfs1,rw"
       device: ":/home/docker-vols/test/mongo_data"
 
 networks:
