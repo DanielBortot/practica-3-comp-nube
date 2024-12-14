@@ -13,7 +13,7 @@ services:
       - practica-network
 
   mongodb:
-    image: mongo:4.4-focal
+    image: mongo:4.2.1
     container_name: mongodb
     environment:
       - MONGO_INITDB_DATABASE=${DB_NAME}
